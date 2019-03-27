@@ -11,6 +11,7 @@
 		2F40869222433B9E00192469 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F40869022433B9E00192469 /* Main.storyboard */; };
 		2F40869422433B9F00192469 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F40869322433B9F00192469 /* Assets.xcassets */; };
 		2F40869722433B9F00192469 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F40869522433B9F00192469 /* LaunchScreen.storyboard */; };
+		2F79C438224BE4BF003B064C /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F79C437224BE4BF003B064C /* CommentCell.swift */; };
 		2FCF9C4722433E2E0051B057 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCF9C4622433E2E0051B057 /* LoginViewController.swift */; };
 		2FCF9C4922433E3B0051B057 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCF9C4822433E3B0051B057 /* FeedViewController.swift */; };
 		2FCF9C4B224344E20051B057 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCF9C4A224344E20051B057 /* CameraViewController.swift */; };
@@ -27,6 +28,7 @@
 		2F40869322433B9F00192469 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F40869622433B9F00192469 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F40869822433B9F00192469 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2F79C437224BE4BF003B064C /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		2FCF9C4622433E2E0051B057 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2FCF9C4822433E3B0051B057 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		2FCF9C4A224344E20051B057 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				2FCF9C4822433E3B0051B057 /* FeedViewController.swift */,
 				2FCF9C4A224344E20051B057 /* CameraViewController.swift */,
 				2FCF9C4C224352870051B057 /* PostCell.swift */,
+				2F79C437224BE4BF003B064C /* CommentCell.swift */,
 			);
 			path = Parstagram;
 			sourceTree = "<group>";
@@ -131,6 +134,7 @@
 				TargetAttributes = {
 					2F40868822433B9E00192469 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -178,6 +182,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/MessageInputBar/MessageInputBar.framework",
 				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -187,6 +192,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageInputBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -228,6 +234,7 @@
 				2FCF9C4922433E3B0051B057 /* FeedViewController.swift in Sources */,
 				2F40868D22433B9E00192469 /* AppDelegate.swift in Sources */,
 				2FCF9C4D224352870051B057 /* PostCell.swift in Sources */,
+				2F79C438224BE4BF003B064C /* CommentCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,7 +390,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = joyceh.Parstagram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -402,7 +409,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = joyceh.Parstagram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

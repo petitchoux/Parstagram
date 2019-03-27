@@ -20,8 +20,9 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        // Remove the method below for styling the button
-        self.styleButtons()
+        
+        // Uncomment below for button styling
+        // self.styleButtons()
     }
     
     @IBAction func onSignUp(_ sender: Any) {
