@@ -19,6 +19,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     var showsCommentBar = false
     
     var posts = [PFObject]()
+    var selectedPost: PFObject!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,9 +71,25 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
         // Create the comment
+        let comment = PFObject(className: "Comments")
+        comment["text"] = text
+        comment["post"] = selectedPost
+        comment["author"] = PFUser.current()!
+
+        selectedPost.add(comment, forKey: "comments")
+        selectedPost.saveInBackground { (success, error) in
+            if success {
+                print ("Comment saved")
+            } else {
+                print ("Error saving comment")
+            }
+        }
+        
+        tableView.reloadData()
         
         // Clear and dismiss the input
         commentBar.inputTextView.text = nil
+        
         showsCommentBar = false
         becomeFirstResponder()
         commentBar.inputTextView.resignFirstResponder()
@@ -89,7 +106,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let post = posts[indexPath.row]
+        let post = posts[indexPath.section]
         let comments = (post["comments"] as? [PFObject]) ?? []
         
         if indexPath.row == 0 {
@@ -98,7 +115,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             let user = post["author"] as! PFUser
             cell.usernameLabel.text = user.username
             
-            cell.captionLabel.text = post["caption"] as! String
+            cell.captionLabel.text = (post["caption"] as! String)
             
             let imageFile = post["image"] as! PFFileObject
             let urlString = imageFile.url!
@@ -111,7 +128,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as! CommentCell
             
             let comment = comments[indexPath.row - 1]
-            cell.nameLabel.text = comment["text"] as? String
+            cell.commentLabel.text = comment["text"] as? String
             let user = comment["author"] as! PFUser
             cell.nameLabel.text = user.username
             
@@ -124,29 +141,17 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let post = posts[indexPath.row]
+        let post = posts[indexPath.section]
         
-        let comments = post["comments"] as? [PFObject] ?? []
+        let comments = (post["comments"] as? [PFObject]) ?? []
         
         if indexPath.row == comments.count + 1 {
             showsCommentBar = true
             becomeFirstResponder()
-            
             commentBar.inputTextView.becomeFirstResponder()
+            
+            selectedPost = post
         }
-        
-//        comment["text"] = "This is a random comment"
-//        comment["post"] = post
-//        comment["author"] = PFUser.current()!
-//
-//        post.add(comment, forKey: "comments")
-//        post.saveInBackground { (success, error) in
-//            if success {
-//                print ("Comment saved")
-//            } else {
-//                print ("Error saving comment")
-//            }
-//        }
     }
 
     /*
